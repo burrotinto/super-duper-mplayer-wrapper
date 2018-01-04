@@ -3,7 +3,6 @@ package de.burrotinto.superDuperMplayerWrapper
 import de.burrotinto.superDuperMplayerWrapper.wrapper.PrefixedPausedMode
 import java.io.BufferedReader
 import java.io.BufferedWriter
-import java.io.File
 import java.nio.charset.Charset
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -114,26 +113,27 @@ class Mplayer(vararg options: String,
 
     fun pause() = execute("pause", PrefixedPausedMode.PAUSING_KEEP_FORCE)
 
+    /**
+     * length of file in seconds
+     */
     val length: Double?
         get() = getProperty("length").toDoubleOrNull()
 
-
+    /**
+     * change volume
+     */
     var volume: Double
         get() = getProperty("volume").toDouble()
         set(value) = setProperty("volume", "$value")
 
-    val file: File?
-        get() {
-            return try {
-                File(getProperty("path"))
-            } catch (e: Exception) {
-                null
-            }
+    var file: String
+        get() = getProperty("path")
+        set(value) {
+            loadFile(value)
         }
 
-
-    /**y
-    seek <value> [type]
+    /**
+     *  seek <value> [type]
 
     Seek to some place in the movie.
     0 is a relative seek of +/- <value> seconds (default).
