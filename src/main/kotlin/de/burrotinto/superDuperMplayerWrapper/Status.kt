@@ -5,6 +5,7 @@ package de.burrotinto.superDuperMplayerWrapper
  */
 interface Status {
     fun getTimepos(): Double
+    fun getLength(): Double
     fun waitOnTime(time: Double)
     fun waitOnNewTime()
     fun getassoziatedPlayer(): Mplayer

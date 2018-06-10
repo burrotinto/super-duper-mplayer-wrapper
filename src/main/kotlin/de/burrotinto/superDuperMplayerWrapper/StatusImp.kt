@@ -7,6 +7,7 @@ import java.util.concurrent.locks.ReentrantLock
  * Created by Florian Klinger on 31.12.17, 06:35.
  */
 class StatusImp(private val mplayer: Mplayer) : Status {
+    override fun getLength(): Double = mplayer.length ?: 0.0
 
     private val LOCK = ReentrantLock()
 
