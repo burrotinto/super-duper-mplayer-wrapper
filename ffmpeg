@@ -1,0 +1,1 @@
+ ffmpeg -i 't_video5312386087111360743.mp4' -vcodec libx264 -x264-params keyint=1:no-scenecut:keyint_min=1 -acodec copy out.mp4
